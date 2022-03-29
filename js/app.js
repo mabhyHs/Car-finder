@@ -118,7 +118,20 @@ function llenarSelect(){
 function filtrarAuto(){
     const resultado = autos.filter( filtrarMarca ).filter( filtrarYear ).filter( filtrarMinimo ).filter( filtrarMaximo ).filter( filtrarPuertas ).filter( filtrarTransmision ).filter( filtrarColor )   //Estos métodos se pueden usar encadenandose
 
-    mostrarAutos(resultado);
+
+    if( resultado.length ){
+
+        mostrarAutos(resultado);
+    }else{
+        noResultado();
+    }
+}
+function noResultado(){
+    limpiarHTML();
+    const noResultado = document.createElement('div');
+    noResultado.classList.add('alerta', 'error');
+    noResultado.textContent = 'No hay Resultados para su búsqueda';
+    resultado.appendChild(noResultado);
 }
 
 function filtrarMarca(auto){
